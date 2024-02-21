@@ -9,7 +9,7 @@ ii) Generate API Keys in Test Mode. To go live with the integration and start ac
 
 
 
-**1). Create Account  **
+**1). Create Account** 
  For test  mode  you can create account using your mobile, email and Pan.
 
 But for live Mode it will need to complete KYC first. And for this will require following details:
