@@ -32,11 +32,11 @@ https://dashboard.razorpay.com/app/dashboard
 
 Use following command to install the package in your project
 
-npm install react-native-razorpay --save
+**npm install react-native-razorpay --save**
 
 In android it will auto link. For iOS go inside iOS folder from your terminal and use pod install.
 
-Note : In the new M1 MacBook, if you not able to compile the React Native Razorpay plugin for release mode.
+**Note : In the new M1 MacBook, if you not able to compile the React Native Razorpay plugin for release mode.**
      Add following changes in Pod : 
 
 installer.pods_project.build_configurations.each do |config|
@@ -56,7 +56,7 @@ Call RazorpayCheckout.open method with the payment options.
 To Call the RazorpayCheckout you need to provide options .
    E.g: currency, image, amount, key etc.
 
-  Please check following link for all available options
+  **Please check following link for all available options**
 
 https://razorpay.com/docs/payments/payment-gateway/react-native-integration/standard/build-integration-android/#14-add-razorpay-checkout-options-to-js-file
 
