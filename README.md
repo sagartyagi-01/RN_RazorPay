@@ -1,79 +1,80 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+**Razor Pay (^2.3.0)**
 
-# Getting Started
+This will require RN 0.60+
+In Podfile platform must be 10.0
 
->**Note**: Make sure you have completed the [React Native - Environment Setup](https://reactnative.dev/docs/environment-setup) instructions till "Creating a new application" step, before proceeding.
+**Prerequisites**
+ I) Create Rzorpay Account
+ii) Generate API Keys in Test Mode. To go live with the integration and start accepting real payments, generate Live Mode API Keys and replace them in the integration.
 
-## Step 1: Start the Metro Server
 
-First, you will need to start **Metro**, the JavaScript _bundler_ that ships _with_ React Native.
 
-To start Metro, run the following command from the _root_ of your React Native project:
+**1). Create Account  **
+ For test  mode  you can create account using your mobile, email and Pan.
 
-```bash
-# using npm
-npm start
+But for live Mode it will need to complete KYC first. And for this will require following details:
 
-# OR using Yarn
-yarn start
-```
+Bank Details, Business Address, Identity Proof, Business Policy.
 
-## Step 2: Start your Application
 
-Let Metro Bundler run in its _own_ terminal. Open a _new_ terminal from the _root_ of your React Native project. Run the following command to start your _Android_ or _iOS_ app:
+After created the account you will able to Generate Test Keys from Dashboard 
 
-### For Android
+https://dashboard.razorpay.com/app/dashboard
 
-```bash
-# using npm
-npm run android
 
-# OR using Yarn
-yarn android
-```
+**2). ROLL API Keys**
+      
+  You can roll the Live and Test mode API keys if you have lost them or exposed them. You can choose to regenerate the API keys by deactivating them immediately or after 24 hours.
 
-### For iOS
 
-```bash
-# using npm
-npm run ios
 
-# OR using Yarn
-yarn ios
-```
+**Steps to install**
 
-If everything is set up _correctly_, you should see your new app running in your _Android Emulator_ or _iOS Simulator_ shortly provided you have set up your emulator/simulator correctly.
+Use following command to install the package in your project
 
-This is one way to run your app — you can also run it directly from within Android Studio and Xcode respectively.
+npm install react-native-razorpay --save
 
-## Step 3: Modifying your App
+In android it will auto link. For iOS go inside iOS folder from your terminal and use pod install.
 
-Now that you have successfully run the app, let's modify it.
+Note : In the new M1 MacBook, if you not able to compile the React Native Razorpay plugin for release mode.
+     Add following changes in Pod : 
 
-1. Open `App.tsx` in your text editor of choice and edit some lines.
-2. For **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Developer Menu** (<kbd>Ctrl</kbd> + <kbd>M</kbd> (on Window and Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (on macOS)) to see your changes!
+installer.pods_project.build_configurations.each do |config|
+config.build_settings["EXCLUDED_ARCHS[sdk=iphonesimulator*]"] = "arm64"
+end
 
-   For **iOS**: Hit <kbd>Cmd ⌘</kbd> + <kbd>R</kbd> in your iOS Simulator to reload the app and see your changes!
+Reference: https://razorpay.com/docs/payments/payment-gateway/react-native-integration/standard/troubleshooting-faqs/#8-in-the-new-m1-macbook-why-am
 
-## Congratulations! :tada:
 
-You've successfully run and modified your React Native App. :partying_face:
 
-### Now what?
+After Installation is done then import RazorpayCheckout in your file.
 
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [Introduction to React Native](https://reactnative.dev/docs/getting-started).
+**import RazorpayCheckout from 'react-native-razorpay';**
 
-# Troubleshooting
+Call RazorpayCheckout.open method with the payment options.
 
-If you can't get this to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
+To Call the RazorpayCheckout you need to provide options .
+   E.g: currency, image, amount, key etc.
 
-# Learn More
+  Please check following link for all available options
 
-To learn more about React Native, take a look at the following resources:
+https://razorpay.com/docs/payments/payment-gateway/react-native-integration/standard/build-integration-android/#14-add-razorpay-checkout-options-to-js-file
 
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
+
+The  RazorpayCheckout.open method returns a JS Promise where then part corresponds to a successful payment and the catch part corresponds to payment failure.
+   
+	
+
+**Limitation Test/Live Mode**
+
+1). At present, you cannot make a test payment to a virtual UPI ID. This feature will be available soon.
+
+https://razorpay.com/docs/payments/smart-collect/test-payments/#test-payment-to-a-virtual-upi-id
+
+
+2). UPI payments should be tested in Live Mode.
+
+https://razorpay.com/docs/payments/payment-gateway/react-native-integration/standard/test-integration/#upi
+
+
+
